@@ -7,30 +7,30 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 
+class AppState {
+    val text = mutableStateOf("")
+    val isButtonEnabled: Boolean
+        get() = text.value.isNotEmpty()
+}
+
 @Composable
 @Preview
-fun App() {
-    val text = remember { mutableStateOf("") }
-    val buttonEnabled = text.value.isNotEmpty()
-
+fun App(appState: AppState) {
     MaterialTheme {
         Column {
             TextField(
-                value = text.value,
-                onValueChange = { newText ->
-                    text.value = newText
-                }
+                value = appState.text.value,
+                onValueChange = { newText -> appState.text.value = newText }
             )
             Text(
-                text = buildGreetings(text.value)
+                text = buildGreetings(appState.text.value)
             )
             Button(
-                onClick = { text.value = ""},
-                enabled = buttonEnabled
+                onClick = { appState.text.value = ""},
+                enabled = appState.isButtonEnabled
             ) {
                 Text("Clean")
             }
@@ -41,7 +41,8 @@ fun App() {
 fun buildGreetings(name: String) = if (name.isEmpty()) "Who's there?" else "Hello $name"
 
 fun main() = application {
+    val appState = AppState()
     Window(onCloseRequest = ::exitApplication) {
-        App()
+        App(appState)
     }
 }
