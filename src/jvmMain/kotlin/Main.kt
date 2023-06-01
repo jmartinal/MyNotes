@@ -1,44 +1,59 @@
 // Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Button
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Mic
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 
 class AppState {
-    val text = mutableStateOf("")
-    val isButtonEnabled: Boolean
-        get() = text.value.isNotEmpty()
+    val notes = mutableStateOf(getNotes())
 }
 
 @Composable
 @Preview
 fun App(appState: AppState) {
     MaterialTheme {
-        Column {
-            TextField(
-                value = appState.text.value,
-                onValueChange = { newText -> appState.text.value = newText }
-            )
-            Text(
-                text = buildGreetings(appState.text.value)
-            )
-            Button(
-                onClick = { appState.text.value = ""},
-                enabled = appState.isButtonEnabled
-            ) {
-                Text("Clean")
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            items(appState.notes.value) { item ->
+                Card(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .fillMaxWidth(0.8F)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Row {
+                            Text(
+                                text = item.title,
+                                style = MaterialTheme.typography.h6,
+                                modifier = Modifier.weight(1F)
+                            )
+                            if (item.type == Note.Type.AUDIO) Icon(imageVector = Icons.Default.Mic, contentDescription = "Audio note")
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(item.description)
+                    }
+                }
             }
         }
     }
 }
-
-fun buildGreetings(name: String) = if (name.isEmpty()) "Who's there?" else "Hello $name"
 
 fun main() = application {
     val appState = AppState()
