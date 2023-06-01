@@ -16,7 +16,6 @@ import androidx.compose.ui.window.application
 fun App() {
     val text = remember { mutableStateOf("") }
     val buttonEnabled = text.value.isNotEmpty()
-    val greetings = if (text.value.isEmpty()) "Who's there?" else "Hello ${text.value}"
 
     MaterialTheme {
         Column {
@@ -27,7 +26,7 @@ fun App() {
                 }
             )
             Text(
-                text = greetings
+                text = buildGreetings(text.value)
             )
             Button(
                 onClick = { text.value = ""},
@@ -38,6 +37,8 @@ fun App() {
         }
     }
 }
+
+fun buildGreetings(name: String) = if (name.isEmpty()) "Who's there?" else "Hello $name"
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
