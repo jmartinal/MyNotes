@@ -10,11 +10,16 @@ data class Note(
     }
 }
 
-fun getNotes(size: Int = 10) = (1 .. size).map { index ->
-    Note(
-        title = "Title $index",
-        description = "Description $index",
-        type = if (index % 3 == 0) Note.Type.AUDIO else Note.Type.TEXT
+fun getNotes(size: Int = 10, callback: (List<Note>) -> Unit) {
+    Thread.sleep(2000)
+    callback.invoke(
+        (1..size).map { index ->
+            Note(
+                title = "Title $index",
+                description = "Description $index",
+                type = if (index % 3 == 0) Note.Type.AUDIO else Note.Type.TEXT
+            )
+        }
     )
 }
 
