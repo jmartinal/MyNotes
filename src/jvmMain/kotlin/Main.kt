@@ -16,10 +16,10 @@ import androidx.compose.ui.window.application
 
 @Composable
 @Preview
-fun App(appState: AppState): Unit = with(appState) {
+fun App(): Unit = with(AppState) {
 
     if (state.value.notes == null) {
-        LaunchedEffect(true) { appState.loadNotes() }
+        LaunchedEffect(true) { loadNotes() }
     }
 
     MaterialTheme {
@@ -73,8 +73,7 @@ private fun NotesList(notes: List<Note>) {
 }
 
 fun main() = application {
-    val appState = AppState()
     Window(onCloseRequest = ::exitApplication) {
-        App(appState)
+        App()
     }
 }
