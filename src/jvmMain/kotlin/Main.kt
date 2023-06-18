@@ -16,9 +16,9 @@ import androidx.compose.ui.window.application
 
 @Composable
 @Preview
-fun App(appState: AppState) {
+fun App(appState: AppState): Unit = with(appState) {
 
-    if (appState.state.value.notes == null) {
+    if (state.value.notes == null) {
         LaunchedEffect(true) { appState.loadNotes() }
     }
 
@@ -27,10 +27,10 @@ fun App(appState: AppState) {
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            if (appState.state.value.loading) {
+            if (state.value.loading) {
                 CircularProgressIndicator()
             } else {
-                appState.state.value.notes?.let { NotesList(it) }
+                state.value.notes?.let { NotesList(it) }
             }
         }
     }
