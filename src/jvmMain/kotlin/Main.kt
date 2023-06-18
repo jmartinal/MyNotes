@@ -22,13 +22,13 @@ class AppState {
     fun loadNotes(size: Int = 10) {
         thread {
             state.value = UiState(loading = true)
-            getNotes { state.value = UiState(notes = it) }
+            getNotes(size) { state.value = UiState(notes = it) }
         }
     }
 
     data class UiState(
         val loading: Boolean = false,
-        val notes: List<Note> = emptyList()
+        val notes: List<Note>? = null
     )
 }
 
@@ -36,8 +36,8 @@ class AppState {
 @Preview
 fun App(appState: AppState) {
 
-    LaunchedEffect(true) {
-        appState.loadNotes()
+    if (appState.state.value.notes == null) {
+        LaunchedEffect(true) { appState.loadNotes() }
     }
 
     MaterialTheme {
@@ -48,7 +48,7 @@ fun App(appState: AppState) {
             if (appState.state.value.loading) {
                 CircularProgressIndicator()
             } else {
-                NotesList(appState.state.value.notes)
+                appState.state.value.notes?.let { NotesList(it) }
             }
         }
     }
