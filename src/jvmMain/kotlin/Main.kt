@@ -8,29 +8,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import kotlin.concurrent.thread
-
-class AppState {
-    val state = mutableStateOf(UiState())
-
-    fun loadNotes(size: Int = 10) {
-        thread {
-            state.value = UiState(loading = true)
-            getNotes(size) { state.value = UiState(notes = it) }
-        }
-    }
-
-    data class UiState(
-        val loading: Boolean = false,
-        val notes: List<Note>? = null
-    )
-}
 
 @Composable
 @Preview
