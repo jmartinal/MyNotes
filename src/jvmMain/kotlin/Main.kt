@@ -19,7 +19,9 @@ import androidx.compose.ui.window.application
 fun App(): Unit = with(AppState) {
 
     if (state.notes == null) {
-        LaunchedEffect(true) { loadNotes() }
+        LaunchedEffect(true) {
+            loadNotes(this)
+        }
     }
 
     MaterialTheme {
