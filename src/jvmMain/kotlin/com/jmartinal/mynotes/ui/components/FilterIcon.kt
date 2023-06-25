@@ -13,18 +13,6 @@ fun FilterIconButton(
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
-    @Composable
-    infix fun Filter.ToMenuItem(text: String) {
-        DropdownMenuItem(
-            onClick = {
-                isExpanded = false
-                onFilterClicked(this)
-            }
-        ) {
-            Text(text)
-        }
-    }
-
     IconButton(onClick = { isExpanded = true }) {
         Icon(
             imageVector = Icons.Default.FilterList,
@@ -34,9 +22,20 @@ fun FilterIconButton(
             expanded = isExpanded,
             onDismissRequest = { isExpanded = false }
         ) {
-            Filter.All ToMenuItem "All"
-            Filter.ByType(Note.Type.TEXT) ToMenuItem "Text"
-            Filter.ByType(Note.Type.AUDIO) ToMenuItem "Audio"
+            listOf(
+                Filter.All to "All",
+                Filter.ByType(Note.Type.TEXT) to "Text",
+                Filter.ByType(Note.Type.AUDIO) to "Audio"
+            ).forEach { (filter, text) ->
+                DropdownMenuItem(
+                    onClick = {
+                        isExpanded = false
+                        onFilterClicked(filter)
+                    }
+                ) {
+                    Text(text)
+                }
+            }
         }
     }
 }
