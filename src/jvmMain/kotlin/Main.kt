@@ -28,11 +28,10 @@ fun App(): Unit = with(AppState) {
 
     MaterialTheme {
         Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            modifier = Modifier.fillMaxSize()
         ) {
             if (state.loading) {
-                CircularProgressIndicator()
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             } else {
                 state.notes?.let { NotesList(it) }
             }

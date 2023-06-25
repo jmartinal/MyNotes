@@ -1,6 +1,6 @@
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 data class Note(
     val title: String,
@@ -14,14 +14,17 @@ data class Note(
     }
 }
 
-suspend fun getNotes(size: Int) = withContext(Dispatchers.IO) {
+fun getNotes(size: Int): Flow<List<Note>> = flow {
     delay(2000)
-    (1..size).map { index ->
-        Note(
-            title = "Title $index",
-            description = "Description $index",
-            type = if (index % 3 == 0) Note.Type.AUDIO else Note.Type.TEXT
+    var notes = emptyList<Note>()
+    (1..size).forEach { position ->
+        notes = notes + Note(
+            title = "Title $position",
+            description = "Description $position",
+            type = if (position % 3 == 0) Note.Type.AUDIO else Note.Type.TEXT
         )
+        emit(notes)
+        delay(500)
     }
 }
 
