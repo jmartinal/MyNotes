@@ -4,9 +4,13 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.runtime.*
+import com.jmartinal.mynotes.data.Filter
+import com.jmartinal.mynotes.data.Note
 
 @Composable
-fun FilterIconButton() {
+fun FilterIconButton(
+    onFilterClicked: (Filter) -> Unit
+) {
     var isExpanded by remember { mutableStateOf(false) }
 
     IconButton(onClick = { isExpanded = true }) {
@@ -18,13 +22,28 @@ fun FilterIconButton() {
             expanded = isExpanded,
             onDismissRequest = { isExpanded = false }
         ) {
-            DropdownMenuItem(onClick = { isExpanded = false }) {
+            DropdownMenuItem(
+                onClick = {
+                    isExpanded = false
+                    onFilterClicked(Filter.All)
+                }
+            ) {
                 Text("All")
             }
-            DropdownMenuItem(onClick = { isExpanded = false }) {
+            DropdownMenuItem(
+                onClick = {
+                    isExpanded = false
+                    onFilterClicked(Filter.ByType(Note.Type.TEXT))
+                })
+            {
                 Text("Text")
             }
-            DropdownMenuItem(onClick = { isExpanded = false }) {
+            DropdownMenuItem(
+                onClick = {
+                    isExpanded = false
+                    onFilterClicked(Filter.ByType(Note.Type.AUDIO))
+                })
+            {
                 Text("Audio")
             }
         }
