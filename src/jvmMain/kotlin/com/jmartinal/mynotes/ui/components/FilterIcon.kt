@@ -22,29 +22,19 @@ fun FilterIconButton(
             expanded = isExpanded,
             onDismissRequest = { isExpanded = false }
         ) {
-            DropdownMenuItem(
-                onClick = {
-                    isExpanded = false
-                    onFilterClicked(Filter.All)
+            listOf(
+                Filter.All to "All",
+                Filter.ByType(Note.Type.TEXT) to "Text",
+                Filter.ByType(Note.Type.AUDIO) to "Audio"
+            ).forEach { (filter, text) ->
+                DropdownMenuItem(
+                    onClick = {
+                        isExpanded = false
+                        onFilterClicked(filter)
+                    }
+                ) {
+                    Text(text)
                 }
-            ) {
-                Text("All")
-            }
-            DropdownMenuItem(
-                onClick = {
-                    isExpanded = false
-                    onFilterClicked(Filter.ByType(Note.Type.TEXT))
-                })
-            {
-                Text("Text")
-            }
-            DropdownMenuItem(
-                onClick = {
-                    isExpanded = false
-                    onFilterClicked(Filter.ByType(Note.Type.AUDIO))
-                })
-            {
-                Text("Audio")
             }
         }
     }
