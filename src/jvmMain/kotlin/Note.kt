@@ -14,7 +14,7 @@ data class Note(
     }
 }
 
-suspend fun getNotes(size: Int = 10) = withContext(Dispatchers.IO) {
+suspend fun getNotes(size: Int) = withContext(Dispatchers.IO) {
     delay(2000)
     (1..size).map { index ->
         Note(
