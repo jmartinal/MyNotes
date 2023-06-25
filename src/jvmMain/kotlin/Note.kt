@@ -1,3 +1,7 @@
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+
 data class Note(
     val title: String,
     val description: String,
@@ -10,17 +14,18 @@ data class Note(
     }
 }
 
-fun getNotes(size: Int = 10, callback: (List<Note>) -> Unit) {
-    Thread.sleep(2000)
-    callback.invoke(
-        (1..size).map { index ->
-            Note(
-                title = "Title $index",
-                description = "Description $index",
-                type = if (index % 3 == 0) Note.Type.AUDIO else Note.Type.TEXT
-            )
-        }
-    )
+fun getNotes(size: Int): Flow<List<Note>> = flow {
+    delay(2000)
+    var notes = emptyList<Note>()
+    (1..size).forEach { position ->
+        notes = notes + Note(
+            title = "Title $position",
+            description = "Description $position",
+            type = if (position % 3 == 0) Note.Type.AUDIO else Note.Type.TEXT
+        )
+        emit(notes)
+        delay(500)
+    }
 }
 
 
