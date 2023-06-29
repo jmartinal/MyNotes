@@ -1,46 +1,22 @@
-// Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
-import androidx.compose.desktop.ui.tooling.preview.Preview
+package com.jmartinal.mynotes.ui.screens.home
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
+import com.jmartinal.mynotes.data.Note
 
 @Composable
-@Preview
-fun App(): Unit = with(AppState) {
-
-    val state by state.collectAsState()
-
-    LaunchedEffect(true) {
-        loadNotes(this)
-    }
-
-    MaterialTheme {
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            if (state.loading) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            } else {
-                state.notes?.let { NotesList(it) }
-            }
-        }
-    }
-}
-
-@Composable
-private fun NotesList(notes: List<Note>) {
+fun NotesList(notes: List<Note>) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -72,11 +48,5 @@ private fun NotesList(notes: List<Note>) {
                 }
             }
         }
-    }
-}
-
-fun main() = application {
-    Window(onCloseRequest = ::exitApplication) {
-        App()
     }
 }
