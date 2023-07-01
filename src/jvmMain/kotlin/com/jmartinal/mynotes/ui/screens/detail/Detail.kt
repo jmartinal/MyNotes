@@ -14,72 +14,85 @@ import com.jmartinal.mynotes.data.Note
 import com.jmartinal.mynotes.data.Note.Companion.NEW_NOTE_ID
 
 @Composable
-fun Detail(noteId: Long, onAction: (Action) -> Unit) {
-
-    var note by remember { mutableStateOf(Note("Note", "Mocked description", Note.Type.TEXT, 2)) }
+fun Detail(
+    viewModel: DetailViewModel,
+    onClose: () -> Unit
+) {
 
     MaterialTheme {
         Scaffold(
-            topBar = { DetailTopBar(note = note, onAction = onAction) }
+            topBar = { DetailTopBar(
+                viewModel = viewModel,
+                onClose = onClose,
+                onSave = viewModel::save,
+                onDelete = viewModel::delete
+            ) }
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(32.dp)
-            ) {
-                OutlinedTextField(
-                    value = note.title,
-                    onValueChange = { note = note.copy(title = it) },
-                    modifier = Modifier.fillMaxWidth(),
-                    label = { Text("Title") },
-                    maxLines = 1
-                )
-                TypeDropdown(
-                    value = note.type,
-                    onValueChanged = { note = note.copy(type = it) },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                OutlinedTextField(
-                    value = note.description,
-                    onValueChange = { note = note.copy(description = it) },
-                    modifier = Modifier.fillMaxWidth().weight(1F),
-                    label = { Text("Description") }
-                )
+            if (viewModel.state.isSaved) {
+                onClose()
+            }
+
+            if (viewModel.state.loading) {
+                CircularProgressIndicator()
+            } else {
+                UiContent(viewModel)
             }
         }
     }
 }
 
 @Composable
+private fun UiContent(viewModel: DetailViewModel) {
+
+    val note = viewModel.state.note
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(32.dp)
+    ) {
+        OutlinedTextField(
+            value = note.title,
+            onValueChange = { viewModel.update(viewModel.state.note.copy(title = it)) },
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text("Title") },
+            maxLines = 1
+        )
+        TypeDropdown(
+            value = note.type,
+            onValueChanged = { viewModel.update(note.copy(type = it)) },
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = note.description,
+            onValueChange = { viewModel.update(note.copy(description = it)) },
+            modifier = Modifier.fillMaxWidth().weight(1F),
+            label = { Text("Description") }
+        )
+    }
+}
+
+@Composable
 private fun DetailTopBar(
-    note: Note,
-    onAction: (Action) -> Unit,
+    viewModel: DetailViewModel,
+    onClose: () -> Unit,
+    onSave: () -> Unit,
+    onDelete: () -> Unit,
 ) {
+    val note = viewModel.state.note
     TopAppBar(
         title = { Text(note.title) },
         navigationIcon = {
-            IconButton(onClick = { onAction(Action.Close) }) {
+            IconButton(onClick = onClose) {
                 Icon(imageVector = Icons.Default.Close, contentDescription = "Close details")
             }
         },
         actions = {
-            IconButton(
-                onClick = {
-                    onAction(Action.Save)
-
-                    onAction(Action.Close)
-                }
-            ) {
+            IconButton(onClick = onSave) {
                 Icon(imageVector = Icons.Default.Save, contentDescription = "Save note")
             }
             if (note.id != NEW_NOTE_ID)
-                IconButton(
-                    onClick = {
-                        onAction(Action.Delete)
-
-                        onAction(Action.Close)
-                    }
-                ) {
+                IconButton(onClick = onDelete) {
                     Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete note")
                 }
         }
