@@ -5,7 +5,7 @@ import com.jmartinal.mynotes.ui.App
 
 
 fun main() = application {
-    Window(onCloseRequest = ::exitApplication) {
+    Window(onCloseRequest = ::exitApplication, title = getAppTitle()) {
         App()
     }
 }
