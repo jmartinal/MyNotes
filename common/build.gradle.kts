@@ -15,8 +15,19 @@ kotlin {
         jvmToolchain(11)
         withJava()
     }
+
+    js(IR) {
+        browser()
+    }
+
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                api(compose.runtime)
+                api(compose.foundation)
+                api(compose.material)
+            }
+        }
         val commonTest by getting
 
         val desktopMain by getting {
@@ -31,5 +42,13 @@ kotlin {
             }
         }
         val desktopTest by getting
+
+        val jsMain by getting {
+            dependencies {
+                implementation(compose.html.core)
+                implementation(compose.runtime)
+            }
+        }
+        val jsTest by getting
     }
 }
