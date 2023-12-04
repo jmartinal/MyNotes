@@ -9,10 +9,13 @@ import org.jetbrains.compose.web.dom.H3
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.renderComposable
+import ui.theme.AppStyleSheet
 
 fun main() {
 
     renderComposable(rootElementId = "root") {
+        Style(AppStyleSheet)
+
         val coroutineScope = rememberCoroutineScope()
         val homeViewModel = remember { HomeViewModel(coroutineScope) }
 
@@ -24,18 +27,7 @@ fun main() {
 
 @Composable
 private fun NotesList(notes: List<Note>, onNoteClick: (Note) -> Unit) {
-    Div(
-        attrs = {
-            style {
-                display(DisplayStyle.Flex)
-                flexDirection(FlexDirection.Column)
-                gap(8.px)
-                width(100.percent)
-                height(100.percent)
-                alignItems(AlignItems.Center)
-            }
-        }
-    ) {
+    Div(attrs = { classes(AppStyleSheet.notesList) }) {
         notes.forEach { note ->
             NoteCard(note, onNoteClick)
         }
@@ -47,34 +39,14 @@ private fun NoteCard(note: Note, onNoteClick: (Note) -> Unit) {
     Div(
         attrs = {
             onClick { onNoteClick(note) }
-            style {
-                display(DisplayStyle.Flex)
-                flexDirection(FlexDirection.Column)
-                width(80.percent)
-                maxWidth(600.px)
-                padding(16.px)
-                border(1.px, LineStyle.Solid, Color.gray)
-                borderRadius(4.px)
-                cursor("pointer")
-            }
+            classes(AppStyleSheet.noteCard)
         }
     ) {
-        Div(
-            attrs = {
-                style {
-                    display(DisplayStyle.Flex)
-                    flexDirection(FlexDirection.Row)
-                    alignItems(AlignItems.Center)
-                }
-            }
+        Div(attrs = { classes(AppStyleSheet.noteCardHeader) }
         ) {
-            H3(
-                attrs = {
-                    style {
-                        flex(1)
-                    }
-                }
-            ) { Text(note.title) }
+            H3(attrs = { classes(AppStyleSheet.noteTitle) }) {
+                Text(note.title)
+            }
             if (note.type == Note.Type.AUDIO) Span { Text("🎙️") }
         }
 
