@@ -15,13 +15,12 @@ fun FilterIconButton(
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
-    Div(attrs = { classes(AppStyleSheet.topBarIcon) }) {
-        Div(
-            attrs = {
-                onClick { isExpanded = !isExpanded }
-            }
-        ) {
-            Text("🔍")
+    Div {
+        Div(attrs = { onClick { isExpanded = !isExpanded } }) {
+            Icon(
+                name = "search",
+                attrs = { classes(AppStyleSheet.topBarIcon) }
+            )
         }
 
         if (isExpanded)

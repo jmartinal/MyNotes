@@ -31,6 +31,10 @@ object AppStyleSheet : StyleSheet() {
         fontSize(24.px)
         lineHeight(1.em)
         cursor("pointer")
+        property("box-shadow", "0 5px 5px 0 rgba(0, 0, 0, 0.4")
+        self + hover style {
+            backgroundColor(Color("#6200EECC"))
+        }
     }
 
     val topBar by style {

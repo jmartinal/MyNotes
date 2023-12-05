@@ -9,6 +9,7 @@ import org.jetbrains.compose.web.attributes.placeholder
 import org.jetbrains.compose.web.attributes.selected
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
+import ui.components.Icon
 import ui.theme.AppStyleSheet
 
 @Composable
@@ -81,22 +82,34 @@ private fun DetailTopBar(
     onDelete: () -> Unit,
 ) {
     Div(attrs = { classes(AppStyleSheet.topBar) }) {
-        Button(attrs = { onClick { onClose() } }) {
-            Text("Close detail")
-        }
+        Icon(
+            name = "close",
+            attrs = {
+                classes(AppStyleSheet.topBarIcon)
+                onClick { onClose() }
+            }
+        )
 
         H1(attrs = { classes(AppStyleSheet.topBarTitle) }) {
             Text(viewModel.state.note.title)
         }
 
-        Button(attrs = { onClick { onSave() } }) {
-            Text("Save note")
-        }
+        Icon(
+            name = "save",
+            attrs = {
+                classes(AppStyleSheet.topBarIcon)
+                onClick { onSave() }
+            }
+        )
 
         if (viewModel.state.note.id != NEW_NOTE_ID)
-            Button(attrs = { onClick { onDelete() } }) {
-                Text("Delete note")
-            }
+            Icon(
+                name = "delete",
+                attrs = {
+                    classes(AppStyleSheet.topBarIcon)
+                    onClick { onDelete() }
+                }
+            )
     }
 }
 
