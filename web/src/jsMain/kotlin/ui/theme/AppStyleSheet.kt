@@ -119,5 +119,10 @@ object AppStyleSheet : StyleSheet() {
         fontWeight("normal")
     }
 
+    val detailInput by style {
+        padding(16.px)
+        borderRadius(4.px)
+        border(1.px, LineStyle.Solid, Color("#CCC"))
+    }
 
 }
