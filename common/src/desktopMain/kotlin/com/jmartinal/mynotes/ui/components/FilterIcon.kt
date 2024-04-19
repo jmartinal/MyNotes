@@ -1,6 +1,6 @@
 package com.jmartinal.mynotes.ui.components
 
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.runtime.*
@@ -28,13 +28,12 @@ fun FilterIconButton(
                 Filter.ByType(Note.Type.AUDIO) to "Audio"
             ).forEach { (filter, text) ->
                 DropdownMenuItem(
+                    text = { Text(text) },
                     onClick = {
                         isExpanded = false
                         onFilterClicked(filter)
                     }
-                ) {
-                    Text(text)
-                }
+                )
             }
         }
     }
