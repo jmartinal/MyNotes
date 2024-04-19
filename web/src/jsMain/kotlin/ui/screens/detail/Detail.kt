@@ -27,7 +27,7 @@ fun Detail(
 
         if (viewModel.state.isSaved) onClose()
 
-        if (viewModel.state.loading) Text("Loading")
+        if (viewModel.state.isLoading) Text("Loading")
         else UiContent(viewModel)
     }
 }

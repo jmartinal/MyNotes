@@ -27,7 +27,7 @@ fun Home(
         MyNotesAppBar(onFilterClicked = viewModel::onFilterClicked)
 
         Div {
-            if (viewModel.state.loading) {
+            if (viewModel.state.isLoading) {
                 Text("Loading")
             }
 

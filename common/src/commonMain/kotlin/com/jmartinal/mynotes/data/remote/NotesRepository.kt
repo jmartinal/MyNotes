@@ -5,7 +5,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
-private const val NOTES_BASE_URL = "http://localhost:8080/notes"
+expect val NOTES_BASE_URL: String
 
 object NotesRepository {
 

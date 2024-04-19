@@ -21,7 +21,7 @@ class DetailViewModel(private val scope: CoroutineScope, private val noteId: Lon
 
     private fun loadNote() {
         scope.launch {
-            state = UiState(loading = true)
+            state = UiState(isLoading = true)
             state = UiState(note = NotesRepository.getById(noteId))
         }
     }
@@ -51,7 +51,7 @@ class DetailViewModel(private val scope: CoroutineScope, private val noteId: Lon
 
     data class UiState(
         val note: Note = Note("", "", Note.Type.TEXT),
-        val loading: Boolean = false,
+        val isLoading: Boolean = false,
         val isSaved: Boolean = false,
     )
 }

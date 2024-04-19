@@ -19,8 +19,8 @@ class HomeViewModel(private val scope: CoroutineScope) {
     }
 
     private fun loadNotes() = scope.launch {
-        state = UiState(loading = true)
-        state = UiState(loading = false, notes = NotesRepository.getAll())
+        state = UiState(isLoading = true)
+        state = UiState(isLoading = false, notes = NotesRepository.getAll())
     }
 
     fun onFilterClicked(filter: Filter) {
@@ -28,7 +28,7 @@ class HomeViewModel(private val scope: CoroutineScope) {
     }
 
     data class UiState(
-        val loading: Boolean = false,
+        val isLoading: Boolean = false,
         val notes: List<Note>? = null,
         val filter: Filter = Filter.All
     ) {

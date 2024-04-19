@@ -32,6 +32,7 @@ kotlin {
             api(compose.runtime)
             api(compose.foundation)
             api(compose.material3)
+            implementation(compose.materialIconsExtended)
 
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.negotiation)
@@ -42,7 +43,6 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
-                implementation(compose.materialIconsExtended)
                 implementation(libs.kotlin.coroutines.core)
 
                 implementation(libs.ktor.client.okhttp)
