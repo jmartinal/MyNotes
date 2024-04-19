@@ -1,10 +1,7 @@
-val coroutinesVersion: String by rootProject.project
-val ktorVersion: String by rootProject.project
-
 plugins {
-    kotlin("multiplatform")
-    kotlin("plugin.serialization")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.compose)
 }
 
 group = "com.jmartinal.mynotes"
@@ -12,8 +9,7 @@ version = "1.0-SNAPSHOT"
 
 kotlin {
     jvm("desktop") {
-        jvmToolchain(11)
-        withJava()
+        jvmToolchain(17)
     }
 
     js(IR) {
@@ -21,38 +17,34 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                api(compose.runtime)
-                api(compose.foundation)
-                api(compose.material)
+        commonMain.dependencies {
+            api(compose.runtime)
+            api(compose.foundation)
+            api(compose.material3)
 
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-            }
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.negotiation)
+            implementation(libs.ktor.serialization)
         }
-        val commonTest by getting
+        commonTest
 
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
                 implementation(compose.materialIconsExtended)
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+                implementation(libs.kotlin.coroutines.core)
 
-                implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation(libs.ktor.client.okhttp)
             }
         }
         val desktopTest by getting
 
-        val jsMain by getting {
-            dependencies {
-                implementation(compose.html.core)
-                implementation(compose.runtime)
+        jsMain.dependencies {
+            implementation(compose.html.core)
+            implementation(compose.runtime)
 
-                implementation("io.ktor:ktor-client-js:$ktorVersion")
-            }
+            implementation(libs.ktor.client.js)
         }
-        val jsTest by getting
+        jsTest
     }
 }

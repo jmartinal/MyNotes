@@ -26,7 +26,7 @@ fun NotesList(notes: List<Note>, onNoteClicked: (Note) -> Unit) {
             Card(
                 modifier = Modifier
                     .padding(8.dp)
-                    .fillMaxWidth(0.8F)
+                    .fillMaxWidth()
                     .clickable { onNoteClicked(item) }
             ) {
                 Column(
