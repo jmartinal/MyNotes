@@ -1,4 +1,4 @@
-package com.jmartinal.mynotes.ui.screens.home
+package com.jmartinal.mynotes.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,6 +29,7 @@ import com.jmartinal.mynotes.data.Note
 import com.jmartinal.mynotes.getAppTitle
 import com.jmartinal.mynotes.ui.components.FilterIconButton
 import com.jmartinal.mynotes.ui.components.MyNotesAppBar
+import com.jmartinal.mynotes.ui.viewmodels.HomeViewModel
 
 @Composable
 fun Home(

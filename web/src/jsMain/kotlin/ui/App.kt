@@ -2,8 +2,8 @@ package ui
 
 import androidx.compose.runtime.*
 import com.jmartinal.mynotes.ui.Route
-import com.jmartinal.mynotes.ui.screens.detail.DetailViewModel
-import com.jmartinal.mynotes.ui.screens.home.HomeViewModel
+import com.jmartinal.mynotes.ui.viewmodels.DetailViewModel
+import com.jmartinal.mynotes.ui.viewmodels.HomeViewModel
 import kotlinx.coroutines.CoroutineScope
 import ui.screens.detail.Detail
 import ui.screens.home.Home

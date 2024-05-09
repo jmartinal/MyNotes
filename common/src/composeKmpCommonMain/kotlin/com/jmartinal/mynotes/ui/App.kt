@@ -1,10 +1,10 @@
 package com.jmartinal.mynotes.ui
 
 import androidx.compose.runtime.*
-import com.jmartinal.mynotes.ui.screens.detail.Detail
-import com.jmartinal.mynotes.ui.screens.detail.DetailViewModel
-import com.jmartinal.mynotes.ui.screens.home.Home
-import com.jmartinal.mynotes.ui.screens.home.HomeViewModel
+import com.jmartinal.mynotes.ui.screens.Detail
+import com.jmartinal.mynotes.ui.viewmodels.DetailViewModel
+import com.jmartinal.mynotes.ui.screens.Home
+import com.jmartinal.mynotes.ui.viewmodels.HomeViewModel
 import kotlinx.coroutines.CoroutineScope
 
 @Composable

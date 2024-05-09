@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.jmartinal.mynotes.data.Note
 import com.jmartinal.mynotes.data.Note.Companion.NEW_NOTE_ID
-import com.jmartinal.mynotes.ui.screens.detail.DetailViewModel
+import com.jmartinal.mynotes.ui.viewmodels.DetailViewModel
 import org.jetbrains.compose.web.attributes.placeholder
 import org.jetbrains.compose.web.attributes.selected
 import org.jetbrains.compose.web.css.*
@@ -121,7 +121,7 @@ private fun TypeDropdown(value: Note.Type, onValueChanged: (Note.Type) -> Unit, 
             onChange { onValueChanged(Note.Type.valueOf(it.target.value)) }
         }
     ) {
-        Note.Type.values().forEach {
+        Note.Type.entries.forEach {
             Option(
                 value = it.name,
                 attrs = { if (it == value) selected() }

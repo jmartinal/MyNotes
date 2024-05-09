@@ -1,4 +1,4 @@
-package com.jmartinal.mynotes.ui.screens.detail
+package com.jmartinal.mynotes.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.jmartinal.mynotes.data.Note.Companion.NEW_NOTE_ID
 import com.jmartinal.mynotes.ui.components.MyNotesAppBar
 import com.jmartinal.mynotes.ui.components.TypeDropdown
+import com.jmartinal.mynotes.ui.viewmodels.DetailViewModel
 
 @Composable
 fun Detail(

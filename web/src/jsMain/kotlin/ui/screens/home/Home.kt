@@ -2,7 +2,7 @@ package ui.screens.home
 
 import androidx.compose.runtime.Composable
 import com.jmartinal.mynotes.data.Note
-import com.jmartinal.mynotes.ui.screens.home.HomeViewModel
+import com.jmartinal.mynotes.ui.viewmodels.HomeViewModel
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text

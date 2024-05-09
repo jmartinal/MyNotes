@@ -1,4 +1,4 @@
-package com.jmartinal.mynotes.ui.screens.detail
+package com.jmartinal.mynotes.ui.viewmodels
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
