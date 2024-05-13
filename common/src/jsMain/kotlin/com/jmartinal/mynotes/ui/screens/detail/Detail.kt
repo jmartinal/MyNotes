@@ -1,4 +1,4 @@
-package ui.screens.detail
+package com.jmartinal.mynotes.ui.screens.detail
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,14 +9,11 @@ import org.jetbrains.compose.web.attributes.placeholder
 import org.jetbrains.compose.web.attributes.selected
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
-import ui.components.Icon
-import ui.theme.AppStyleSheet
+import com.jmartinal.mynotes.ui.components.Icon
+import com.jmartinal.mynotes.ui.theme.AppStyleSheet
 
 @Composable
-fun Detail(
-    viewModel: DetailViewModel,
-    onClose: () -> Unit,
-) {
+actual fun Detail(viewModel: DetailViewModel, onClose: () -> Unit) {
     Div {
         DetailTopBar(
             viewModel = viewModel,

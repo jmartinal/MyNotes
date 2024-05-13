@@ -1,16 +1,22 @@
-package ui.screens.home
+package com.jmartinal.mynotes.ui.screens.home
 
 import androidx.compose.runtime.Composable
 import com.jmartinal.mynotes.data.Note
+import com.jmartinal.mynotes.ui.components.MyNotesAppBar
+import com.jmartinal.mynotes.ui.theme.AppStyleSheet
 import com.jmartinal.mynotes.ui.viewmodels.HomeViewModel
-import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.css.DisplayStyle
+import org.jetbrains.compose.web.css.FlexDirection
+import org.jetbrains.compose.web.css.display
+import org.jetbrains.compose.web.css.flexDirection
+import org.jetbrains.compose.web.css.height
+import org.jetbrains.compose.web.css.percent
+import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
-import ui.components.MyNotesAppBar
-import ui.theme.AppStyleSheet
 
 @Composable
-fun Home(
+actual fun Home(
     viewModel: HomeViewModel,
     onNoteClicked: (noteId: Long) -> Unit,
 ) {

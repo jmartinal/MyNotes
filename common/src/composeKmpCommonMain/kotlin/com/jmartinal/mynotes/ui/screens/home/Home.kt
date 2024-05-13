@@ -1,4 +1,4 @@
-package com.jmartinal.mynotes.ui.screens
+package com.jmartinal.mynotes.ui.screens.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -32,9 +32,9 @@ import com.jmartinal.mynotes.ui.components.MyNotesAppBar
 import com.jmartinal.mynotes.ui.viewmodels.HomeViewModel
 
 @Composable
-fun Home(
+actual fun Home(
     viewModel: HomeViewModel,
-    onNoteClicked: (noteId: Long) -> Unit,
+    onNoteClicked: (noteId: Long) -> Unit
 ) {
     MaterialTheme {
         Scaffold(

@@ -1,4 +1,4 @@
-package ui.screens.home
+package com.jmartinal.mynotes.ui.screens.home
 
 import androidx.compose.runtime.Composable
 import com.jmartinal.mynotes.data.Note
@@ -6,8 +6,8 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H3
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
-import ui.components.Icon
-import ui.theme.AppStyleSheet
+import com.jmartinal.mynotes.ui.components.Icon
+import com.jmartinal.mynotes.ui.theme.AppStyleSheet
 
 @Composable
 fun NotesList(notes: List<Note>, onNoteClick: (Note) -> Unit) {

@@ -1,4 +1,4 @@
-package ui.components
+package com.jmartinal.mynotes.ui.components
 
 import androidx.compose.runtime.Composable
 import com.jmartinal.mynotes.data.Filter
@@ -6,7 +6,7 @@ import com.jmartinal.mynotes.getAppTitle
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.Text
-import ui.theme.AppStyleSheet
+import com.jmartinal.mynotes.ui.theme.AppStyleSheet
 
 @Composable
 fun MyNotesAppBar(

@@ -1,4 +1,4 @@
-package ui.components
+package com.jmartinal.mynotes.ui.components
 
 import androidx.compose.runtime.*
 import com.jmartinal.mynotes.data.Filter
@@ -7,7 +7,7 @@ import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.color
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
-import ui.theme.AppStyleSheet
+import com.jmartinal.mynotes.ui.theme.AppStyleSheet
 
 @Composable
 fun FilterIconButton(

@@ -1,4 +1,4 @@
-package ui.components
+package com.jmartinal.mynotes.ui.components
 
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.web.attributes.AttrsScope

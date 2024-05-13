@@ -1,4 +1,4 @@
-package com.jmartinal.mynotes.ui.screens
+package com.jmartinal.mynotes.ui.screens.detail
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -26,7 +26,7 @@ import com.jmartinal.mynotes.ui.components.TypeDropdown
 import com.jmartinal.mynotes.ui.viewmodels.DetailViewModel
 
 @Composable
-fun Detail(
+actual fun Detail(
     viewModel: DetailViewModel,
     onClose: () -> Unit
 ) {
