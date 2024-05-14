@@ -1,34 +1,10 @@
 package com.jmartinal.mynotes.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
-import com.jmartinal.mynotes.ui.screens.detail.Detail
-import com.jmartinal.mynotes.ui.screens.home.Home
-import com.jmartinal.mynotes.ui.viewmodels.DetailViewModel
-import com.jmartinal.mynotes.ui.viewmodels.HomeViewModel
-import kotlinx.coroutines.CoroutineScope
+import cafe.adriel.voyager.navigator.Navigator
+import com.jmartinal.mynotes.ui.screens.home.HomeScreen
 
 @Composable
 fun App() {
-
-    var route: Route by remember { mutableStateOf(Route.Home) }
-    val scope: CoroutineScope = rememberCoroutineScope()
-
-    route.let {
-        when (it) {
-            Route.Home -> Home(
-                viewModel = HomeViewModel(scope),
-                onNoteClicked = { noteId -> route = Route.Detail(noteId) }
-            )
-
-            is Route.Detail -> Detail(
-                viewModel = DetailViewModel(scope, it.noteId),
-                onClose = { route = Route.Home }
-            )
-        }
-    }
+    Navigator(HomeScreen)
 }

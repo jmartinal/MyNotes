@@ -38,6 +38,8 @@ kotlin {
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.negotiation)
                 implementation(libs.ktor.serialization)
+
+                implementation(libs.voyager.navigator)
             }
         }
         val commonTest by getting

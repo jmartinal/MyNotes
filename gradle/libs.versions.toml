@@ -3,16 +3,17 @@ agp = "8.2.2"
 android-compileSdk = "34"
 android-minSdk = "26"
 android-targetSdk = "34"
-kotlin = "1.9.23"
-coroutines = "1.8.0"
-compose = "1.6.5"
-composeCompiler = "1.5.13"
-composePlugin = "1.6.2"
-ktor = "2.3.10"
 androidxActivity = "1.9.0"
 androidxAppcompat = "1.6.1"
 androidSupportTest = "3.0.2"
+compose = "1.6.5"
+composeCompiler = "1.5.13"
+composePlugin = "1.6.2"
+coroutines = "1.8.0"
 junit = "4.13.2"
+kotlin = "1.9.23"
+ktor = "2.3.10"
+voyager = "1.1.0-alpha04"
 
 [libraries]
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -29,6 +30,9 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 android-support-test-runner = { module = "com.android.support.test:runner", version.ref = "androidSupportTest" }
 android-support-test-espresso-core = { module = "com.android.support.test.espresso:espresso-core", version.ref = "androidSupportTest" }
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
+
 
 [plugins]
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
