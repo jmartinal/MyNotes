@@ -3,13 +3,14 @@ package com.jmartinal.mynotes.ui.viewmodels
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import cafe.adriel.voyager.core.model.ScreenModel
+import cafe.adriel.voyager.core.model.screenModelScope
 import com.jmartinal.mynotes.data.Filter
 import com.jmartinal.mynotes.data.Note
 import com.jmartinal.mynotes.data.remote.NotesRepository
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val scope: CoroutineScope) {
+class HomeViewModel: ScreenModel {
 
     var state by mutableStateOf(UiState())
         private set
@@ -18,7 +19,7 @@ class HomeViewModel(private val scope: CoroutineScope) {
         loadNotes()
     }
 
-    private fun loadNotes() = scope.launch {
+    private fun loadNotes() = screenModelScope.launch {
         state = UiState(isLoading = true)
         state = UiState(isLoading = false, notes = NotesRepository.getAll())
     }

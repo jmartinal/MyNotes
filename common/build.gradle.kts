@@ -40,6 +40,7 @@ kotlin {
                 implementation(libs.ktor.serialization)
 
                 implementation(libs.voyager.navigator)
+                implementation(libs.voyager.screenmodel)
             }
         }
         val commonTest by getting
