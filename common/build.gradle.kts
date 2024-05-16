@@ -91,6 +91,13 @@ kotlin {
             }
         }
         val androidUnitTest by getting
+
+        val iosMain by getting {
+            dependsOn(composeKmpCommonMain)
+            dependencies {
+                implementation(libs.ktor.client.darwin)
+            }
+        }
     }
 }
 
