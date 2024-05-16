@@ -27,6 +27,19 @@ kotlin {
         }
     }
 
+    listOf(
+        iosArm64(),
+        iosX64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "common"
+//            linkerOpts("-framework", "CoreGraphics")
+//            linkerOpts("-framework", "CoreText")
+//            linkerOpts("-framework", "Metal")
+        }
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -78,6 +91,13 @@ kotlin {
             }
         }
         val androidUnitTest by getting
+
+        val iosMain by getting {
+            dependsOn(composeKmpCommonMain)
+            dependencies {
+                implementation(libs.ktor.client.darwin)
+            }
+        }
     }
 }
 
